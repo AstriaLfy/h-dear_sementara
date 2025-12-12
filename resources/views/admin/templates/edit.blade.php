@@ -13,6 +13,7 @@
             @csrf
             @method('PUT')
 
+            {{-- Input Nama Template --}}
             <div class="mb-4">
                 <label for="nama_template" class="block text-sm font-medium text-gray-700 mb-2">Nama Template *</label>
                 <input type="text" id="nama_template" name="nama_template" value="{{ old('nama_template', $template->nama_template) }}" required
@@ -22,6 +23,7 @@
                 @enderror
             </div>
 
+            {{-- Input Deskripsi --}}
             <div class="mb-4">
                 <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
                 <textarea id="deskripsi" name="deskripsi" rows="3"
@@ -31,6 +33,7 @@
                 @enderror
             </div>
 
+            {{-- Input Thumbnail --}}
             <div class="mb-4">
                 <label for="thumbnail" class="block text-sm font-medium text-gray-700 mb-2">Thumbnail</label>
                 
@@ -49,6 +52,7 @@
                 <p class="mt-1 text-sm text-gray-500">Format: JPEG, PNG, JPG. Maksimal 2MB. Kosongkan jika tidak ingin mengubah.</p>
             </div>
 
+            {{-- Input HTML Content --}}
             <div class="mb-4">
                 <label for="html_content" class="block text-sm font-medium text-gray-700 mb-2">HTML Content *</label>
                 <textarea id="html_content" name="html_content" rows="15" required
@@ -56,19 +60,22 @@
                 @error('html_content')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
+
+                {{-- Informasi Variabel (BAGIAN YANG DIPERBAIKI) --}}
                 <div class="mt-2 bg-gray-50 border border-gray-200 rounded p-3">
                     <p class="text-sm font-medium text-gray-700 mb-2">Variabel yang tersedia:</p>
                     <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
-                        <code class="bg-gray-100 px-2 py-1 rounded">{{'{{'}}nama_pengirim{{'}}'}}</code>
-                        <code class="bg-gray-100 px-2 py-1 rounded">{{'{{'}}nama_acara{{'}}'}}</code>
-                        <code class="bg-gray-100 px-2 py-1 rounded">{{'{{'}}tempat_acara{{'}}'}}</code>
-                        <code class="bg-gray-100 px-2 py-1 rounded">{{'{{'}}tanggal_acara{{'}}'}}</code>
-                        <code class="bg-gray-100 px-2 py-1 rounded">{{'{{'}}tujuan_undangan{{'}}'}}</code>
-                        <code class="bg-gray-100 px-2 py-1 rounded">{{'{{'}}pesan_tambahan{{'}}'}}</code>
+                        <code class="bg-gray-100 px-2 py-1 rounded">@{{nama_pengirim}}</code>
+                        <code class="bg-gray-100 px-2 py-1 rounded">@{{nama_acara}}</code>
+                        <code class="bg-gray-100 px-2 py-1 rounded">@{{tempat_acara}}</code>
+                        <code class="bg-gray-100 px-2 py-1 rounded">@{{tanggal_acara}}</code>
+                        <code class="bg-gray-100 px-2 py-1 rounded">@{{tujuan_undangan}}</code>
+                        <code class="bg-gray-100 px-2 py-1 rounded">@{{pesan_tambahan}}</code>
                     </div>
                 </div>
             </div>
 
+            {{-- Checkbox Active --}}
             <div class="mb-6">
                 <label class="flex items-center">
                     <input type="checkbox" name="is_active" value="1" {{ old('is_active', $template->is_active) ? 'checked' : '' }}
@@ -77,6 +84,7 @@
                 </label>
             </div>
 
+            {{-- Tombol Aksi --}}
             <div class="flex space-x-4">
                 <a href="{{ route('admin.templates.index') }}" class="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition-colors text-center">
                     Batal

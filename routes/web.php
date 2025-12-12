@@ -17,14 +17,15 @@ Route::prefix('undangan')->name('undangan.')->group(function () {
     Route::get('/download/{id}', [UndanganController::class, 'download'])->name('download');
 });
 
-// Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('templates', TemplateController::class);
-
-    Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 });
+
+Route::get('/dashboard', function () {
+    if (auth()->user()->is_admin) {
+        return redirect()->route('admin.templates.index');
+    }
+    return redirect()->route('undangan.index');
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

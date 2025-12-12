@@ -9,16 +9,24 @@ class Undangan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'template_id',
-        'nama_pengirim',
-        'nama_acara',
-        'tempat_acara',
+        protected $fillable = [
+        'template_id', 
+        'nomor_surat',
+        'nama_pengirim', 
+        'jabatan_pengirim',
+        'nama_acara', 
+        'tempat_acara', 
         'tanggal_acara',
-        'tujuan_undangan',
+        'tujuan_undangan', 
+        'jabatan_penerima',
+        'instansi_penerima',
+        'agenda_rapat',
+        'dresscode',
         'pesan_tambahan',
-        'nama_user',
-        'email_user'
+        'nama_user', 
+        'email_user',
+        'topik_acara',
+        'link_dokumen'
     ];
 
     protected $casts = [

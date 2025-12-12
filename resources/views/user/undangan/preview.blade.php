@@ -9,42 +9,22 @@
         <p class="text-gray-600">Undangan berhasil dibuat! Lihat preview dan download PDF</p>
     </div>
 
-    <!-- Preview Card -->
     <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
-        <div class="p-8">
-            {!! str_replace(
-                [
-                    '{{nama_pengirim}}',
-                    '{{nama_acara}}',
-                    '{{tempat_acara}}',
-                    '{{tanggal_acara}}',
-                    '{{tujuan_undangan}}',
-                    '{{pesan_tambahan}}'
-                ],
-                [
-                    $undangan->nama_pengirim,
-                    $undangan->nama_acara,
-                    $undangan->tempat_acara,
-                    $undangan->tanggal_acara->format('d F Y, H:i'),
-                    $undangan->tujuan_undangan,
-                    $undangan->pesan_tambahan ?? ''
-                ],
-                $undangan->template->html_content
-            ) !!}
+        <div class="p-8 border border-gray-200 overflow-auto">
+            {{-- Menampilkan HTML hasil olahan Controller --}}
+            {!! $htmlContent !!}
         </div>
     </div>
 
-    <!-- Action Buttons -->
     <div class="flex space-x-4">
-        <a href="{{ route('undangan.index') }}" class="flex-1 bg-gray-300 text-gray-700 px-6 py-3 rounded-md hover:bg-gray-400 transition-colors text-center font-semibold">
+        <a href="{{ route('undangan.index') }}" class="flex-1 bg-gray-100 text-gray-700 px-6 py-3 rounded-md hover:bg-gray-200 transition-colors text-center font-medium">
             Buat Undangan Baru
         </a>
-        <a href="{{ route('undangan.download', $undangan->id) }}" class="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors text-center font-semibold">
+        <a href="{{ route('undangan.download', $undangan->id) }}" class="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors text-center font-medium shadow-md">
             Download PDF
         </a>
     </div>
 
-    <!-- Info Card -->
     <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
         <div class="flex">
             <div class="flex-shrink-0">

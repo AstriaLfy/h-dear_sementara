@@ -26,5 +26,4 @@ class AdminUserSeeder extends Seeder
             'is_admin' => false,
         ]);
     }
-
 }
